@@ -1,4 +1,7 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.security.SecureRandom;
+import java.sql.SQLOutput;
 import java.util.Arrays;
 
 public class BinarySearch {
@@ -6,11 +9,13 @@ public class BinarySearch {
     public static void main(String[] args) {
 
         SecureRandom oRand = new SecureRandom();
-        int iNumTotal = 10000;
+        int iNumTotal = 999999999;
         int[] aiNumbers =  new int[iNumTotal];
         int iTargetNum;
         int iTargetNumIndex;
         int iIndexReturned;
+        long lTimeStarted;
+        long lTimeEnded;
 
         //Fill array with random numbers.
         for (int i = 0; i < aiNumbers.length; i++ ){
@@ -29,9 +34,19 @@ public class BinarySearch {
 
         BinarySearch oBinarySearch = new BinarySearch();
 
+        // begin binary search test
+        lTimeStarted = System.nanoTime();
         iIndexReturned = oBinarySearch.findNumberBinarySearch(aiNumbers, iTargetNum, aiNumbers.length-1, 0);
+        lTimeEnded = System.nanoTime();
+        System.out.println("Binary Search elapsed time: " + (lTimeEnded - lTimeStarted));
         System.out.println("Binary search returned: " + iIndexReturned);
 
+        // begin linear search test
+        lTimeStarted = System.nanoTime();
+        iIndexReturned = oBinarySearch.findNumberLinearSearch(aiNumbers, iTargetNum);
+        lTimeEnded = System.nanoTime();
+        System.out.println("Linear Search elapsed time: " + (lTimeEnded - lTimeStarted));
+        System.out.println("Linear search returned: " + iIndexReturned);
     }
 
     /**
@@ -57,6 +72,21 @@ public class BinarySearch {
             return findNumberBinarySearch(aiNumbers, iTargetNum, iMiddleIndex -1, iLowIndex);
         }
 
+    }
+
+
+    /**
+     *  Find index of target num using linear search.
+     */
+
+    private int findNumberLinearSearch(int[] aiNums, int iTargetNum){
+
+        for(int x = 0; x < aiNums.length; x++) {
+            if (aiNums[x] == iTargetNum) {
+                return x;
+            }
+        }
+        return -1; // -1 is a standard error
     }
 
 }
