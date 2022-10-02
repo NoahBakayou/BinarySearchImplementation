@@ -1,7 +1,4 @@
-import org.w3c.dom.ls.LSOutput;
-
 import java.security.SecureRandom;
-import java.sql.SQLOutput;
 import java.util.Arrays;
 
 public class BinarySearch {
@@ -9,7 +6,7 @@ public class BinarySearch {
     public static void main(String[] args) {
 
         SecureRandom oRand = new SecureRandom();
-        int iNumTotal = 999999999;
+        int iNumTotal = 100;
         int[] aiNumbers =  new int[iNumTotal];
         int iTargetNum;
         int iTargetNumIndex;
